@@ -64,7 +64,9 @@ function itimozi(){ //　一文字ずつ表示させる
     }
 }
 
+// ********************* 初期表示 *********************** //
 function display_message_box() {
+    window.scrollTo(0,0);
     kamikakushi();
     countSet();
     itimozi()
