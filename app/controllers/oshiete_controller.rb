@@ -13,6 +13,14 @@ class OshieteController < ApplicationController
     render json: tabemono
   end
 
+  def houkoku
+    if params[:houkoku]
+      render json: { sasara: "おめでとう"  }
+    else
+      render json: { sasara: "は？" }
+    end
+  end
+
   private
 
   def user_params
