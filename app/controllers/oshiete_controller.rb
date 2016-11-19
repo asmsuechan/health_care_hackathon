@@ -28,7 +28,7 @@ class OshieteController < ApplicationController
   # POST oshiete/houkoku
   def houkoku
     if params[:houkoku] == "ok"
-      render json: { status: "おめでとう" }
+      render json: { sasara: "おめでとう" }
     else
       render json: { sasara: "頑張っていこう" }
     end
