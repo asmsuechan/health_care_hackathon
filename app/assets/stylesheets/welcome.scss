@@ -58,3 +58,17 @@
   top: 10px;
   right: 20px;
 }
+
+#condition_button_area, #tabeta_button_area {
+  display: none;
+  position: relative;
+  top: -310px;
+  width: 100%;
+  min-height: 50px;
+  padding-top: 10px;
+}
+
+.condition_button {
+  margin: 10px;
+  width: 95%;
+}
