@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tenmei: MyString
+  ryourimei: MyString
+  nedan: MyString
+  url: MyString
+  gazou: MyString
+
+two:
+  tenmei: MyString
+  ryourimei: MyString
+  nedan: MyString
+  url: MyString
+  gazou: MyString
