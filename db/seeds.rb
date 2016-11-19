@@ -47,6 +47,18 @@ Tabemono.create(tenmei: "とんかつ たていし",
                 url: "https://tabelog.com/shimane/A3201/A320101/32000136/",
                 gazou: "https://tabelog.ssl.k-img.com/restaurant/images/Rvw/17082/640x640_rect_17082558.jpg",
                 genki: 2)
+Tabemono.create(tenmei: "東風",
+                ryourimei: "割子そば",
+                nedan: "850円",
+                url: "https://tabelog.com/shimane/A3201/A320101/32004237/",
+                gazou: "",
+                genki: 0)
+Tabemono.create(tenmei: "松本蕎麦店",
+                ryourimei: "出雲そば",
+                nedan: "1000円",
+                url: "https://tabelog.com/shimane/A3201/A320101/32002677/",
+                gazou:,
+                genki: 0)
 #Tabemono.create(tenmei: ,
 #                ryourimei: ,
 #                nedan: ,
