@@ -120,7 +120,7 @@ function sendRecommend(taicho, message_prefix){
         var tenmei = data.tenmei;
         var ryourimei = data.ryourimei;
         var url = data.url;
-        var message = `${message_prefix}あなたには「${tenmei}の${ryourimei}」がおすすめ！<br><a href="${url}" class="url_link">${url}</a>`;
+        var message = message_prefix + 'あなたには「' + tenmei + 'の' + ryourimei + '」がおすすめ！<br><a href="' + url + '" class="url_link">' + url+ '</a>';
         $("#message_box").html(message);
     });
 }
