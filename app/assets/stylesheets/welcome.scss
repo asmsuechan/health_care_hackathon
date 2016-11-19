@@ -4,7 +4,6 @@
 
 #content{
   width: 100%;
-  text-align: center;
 }
 
 #sasara_image {
@@ -18,7 +17,37 @@
   padding: 10px;
   border-radius: 5px;
   background-color: rgba(255,0,0,0.3);
-  top: -20px;
-  min-height: 50px;
+  top: -50px;
+  min-height: 80px;
   margin: auto;
+  font-size: 1.4em;
+}
+
+#man_woman_button {
+  display: none;
+  position: relative;
+  top: -200px;
+  width: 100%;
+
+  .man{
+    width: 45%;
+    margin: 10px;
+    height: 50px;
+  }
+
+  .woman{
+    width: 45%;
+    margin: 10px;
+    height: 50px;
+  }
+}
+
+#name_input, #age_input {
+  display: none;
+  position: relative;
+  top: -200px;
+  width: 100%;
+  background-color: rgba(151, 179, 255, 0.3);
+  min-height: 50px;
+  padding-top: 10px;
 }

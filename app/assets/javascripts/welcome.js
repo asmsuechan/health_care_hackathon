@@ -63,17 +63,76 @@ function itimozi(){ //　一文字ずつ表示させる
         }
     }
 }
-
-// ********************* 初期表示 *********************** //
 function display_message_box() {
-    window.scrollTo(0,0);
+    message_count = 0;
+    message_tx = [];
+    message_txCount = [];
     kamikakushi();
     countSet();
     itimozi()
 }
 
-$(function(){
+// ********************* シナリオ *********************** //
+
+// ********* シナリオ1 *********** //
+function view_name_input(){
+    $('#name_input').show(1000);
+}
+
+function scenario_page_start(){
     startTimer();
     display_message_box();
     Sound.playSound("http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/voice/00.wav");
+    setTimeout(view_name_input, 4000);
+}
+
+// ********* シナリオ2 *********** //
+
+function scenario2(){
+    $('#name_input').hide(500);
+    // メッセージ
+    $('#message_box').text("あなたのことを、もっと詳しく教えてごしない。");
+    display_message_box();
+    $('#man_woman_button').show(500);
+}
+
+
+// ********************* 初期表示 *********************** //
+$(function(){
+    scenario_page_start();
+    $('#name_input_button').click(function(){
+        scenario2();
+    });
+});
+
+
+// railsとのつなぎ込み
+// var HEROKU_URL = 'http://localhost:3000';
+var HEROKU_URL = 'https://health-care-hackathon-shimane.herokuapp.com';
+
+//　一文字ずつ表示はどうしたらいいんだ？
+function sendRecommend(taicho, message_prefix){
+    $.ajax({
+        type: 'POST',
+        url: HEROKU_URL + '/oshiete/recommend',
+        data: { taicho: taicho }
+    }).done(function( data ) {
+        var tenmei = data.tenmei;
+        var ryourimei = data.ryourimei;
+        var url = data.url;
+        var message = `${message_prefix}あなたには「${tenmei}の${ryourimei}」がおすすめ！<br><a href="${url}" class="url_link">${url}</a>`;
+        $("#message_box").html(message);
+    });
+}
+
+$(function(){
+    $('#good_button').click(function(){
+        sendRecommend('good', '絶好調な');
+    });
+    $('#bad_button').click(function(){
+        sendRecommend('bad', 'しょんぼり気味の');
+    });
+    $('#normal_button').click(function(){
+        sendRecommend('normal', 'いつもどおりの');
+    });
 });
