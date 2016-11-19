@@ -27,7 +27,7 @@ var sasaraTimer = function() {
 
 /* ----- option ----- */
 var message_id_name = ['message_box']; //指定するidを全て配列で渡す
-var message_txSp = 100; // テキストの表示速度
+var message_txSp = 50; // テキストの表示速度
 var message_dly = 1000; // 次の文章までの待ち時間
 /* ----- option ----- */
 var message_count = 0;
@@ -84,19 +84,20 @@ function view_name_input(){
 function scenario_page_start(){
     sasaraStartTimer();
     display_message_box();
-    Sound.playSound("http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/voice/00.wav");
+    Sound.playSound("http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/voice/00_さとうささら_私の名前はささら。あ….wav");
     setTimeout(view_name_input, 4000);
 }
 
 // ********* シナリオ2 *********** //
 
 function scenario2(){
-    yourName = $('#name_input').val();
+    yourName = $('#name_input_text').val();
     $('#name_input').hide(500);
 
     // メッセージ
     sasaraStartTimer();
-    $('#message_box').text("あなたのことを、もっと詳しく教えてごしない。");
+    Sound.playSound("http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/voice/01_さとうささら_あなたのことを、もっ….wav");
+    $('#message_box').text((yourName == "" ? "あなた" : yourName) + "のことを、もっと詳しく教えてごしない。");
 
     display_message_box();
 
@@ -111,7 +112,8 @@ function scenario3(){
 
     // メッセージ
     sasaraStartTimer();
-    $('#message_box').text("あなたの年齢を教えてごしない。");
+    Sound.playSound("http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/voice/23.wav");
+    $('#message_box').text((yourName == "" ? "あなた" : yourName) + "の年齢を教えてごしない。");
 
     display_message_box();
 
@@ -126,6 +128,7 @@ function scenario4(){
 
     // メッセージ
     sasaraStartTimer();
+    Sound.playSound("http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/voice/24.wav");
     $('#message_box').text("だんだん！楽しく健康にならこい！");
     display_message_box();
 
@@ -136,10 +139,11 @@ function scenario4(){
 
 // ********* シナリオ5 教えて *********** //
 function scenario5(){
-    $('#oshiete_button').hide(500);
+    $('#oshiete_area').hide(500);
 
     // メッセージ
     sasaraStartTimer();
+    Sound.playSound("http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/voice/02.wav");
     $('#message_box').text("今の体調はどんな感じだね？");
     display_message_box();
 
@@ -162,15 +166,17 @@ function scenario6(message){
 // ********* シナリオ7 おすすめされた *********** //
 function scenario7(message, url){
     $('#tabeta_button_area').hide(500);
+
     $('#sasara_image').attr('src', url);
+    $('#oshiete_area').show(1000);
 
     $("#message_box").html(message);
-    display_message_box();
+//    display_message_box();
 
     // 画像を戻す
     setTimeout(function(){
         $('#sasara_image').attr('src', sasaraImagePaths[0]);
-    }, 4000);
+    }, 10000);
 }
 
 
