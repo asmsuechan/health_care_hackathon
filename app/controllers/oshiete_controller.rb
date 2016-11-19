@@ -1,4 +1,5 @@
 class OshieteController < ApplicationController
+  protect_from_forgery except: [:register, :recommend]
   def index
   end
 
