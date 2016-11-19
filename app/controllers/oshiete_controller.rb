@@ -11,11 +11,16 @@ class OshieteController < ApplicationController
   end
 
   # POST oshiete/recommend
+  # curl localhost:3002/oshiete/recommend -X POST -d "taicho=good"
+  # {"id":3,"tenmei":"半睡","ryourimei":"うどん","nedan":"600円","url":"http://r.gnavi.co.jp/1gfwba4s0000/","gazou":"http://uds.gnst.jp/rest/fs_img/1gfwba4s0000/s_1001.jpg","created_at":"2016-11-19T02:29:19.229Z","updated_at":"2016-11-19T02:29:19.229Z"}
   def recommend
-    # 登録者が女の人の場合と男の人の場合で分岐するなどしたほうがいい
-    # current_userとかのヘルパーが必要になるのでとりあえず没
-    # tabemono = Tabemono.new(tenmei: "巴庵", ryourimei: "博多もつ鍋", nedan: "1200円", url: "http://r.gnavi.co.jp/hv1uvs430000", gazou: "http://uds.gnst.jp/rest/img/hv1uvs430000/t_0004.jpg?t=1403672613&g=157")
-    tabemono = Tabemono.all.sample
+    if params[:taicho] == "good"
+      tabemono = Tabemono.find(3)
+    elsif params[:taicho] == "bad"
+      tabemono = Tabemono.find(2)
+    else
+      tabemono = Tabemono.find(1)
+    end
     render json: tabemono
   end
 

@@ -26,11 +26,11 @@ Tabemono.create(tenmei: "http://r.gnavi.co.jp/ng18v3cz0000/",
                 url: "http://r.gnavi.co.jp/ng18v3cz0000/",
                 gazou: "http://uds.gnst.jp/shobun/img/3100114/s_3100114_1.jpg")
 
-#Tabemono.create(tenmei: ,
-#                ryourimei: ,
-#                nedan: ,
-#                url: ,
-#                gazou:)
+Tabemono.create(tenmei: "神代そば",
+                ryourimei: "そば",
+                nedan: "930円",
+                url: "https://tabelog.com/shimane/A3201/A320101/32000016/",
+                gazou: "https://tabelog.ssl.k-img.com/restaurant/images/Rvw/42282/42282181.jpg")
 #Tabemono.create(tenmei: ,
 #                ryourimei: ,
 #                nedan: ,
