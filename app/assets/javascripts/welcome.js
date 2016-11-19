@@ -102,7 +102,7 @@ function scenario2(){
     display_message_box();
 
     setTimeout(function(){
-        $('#man_woman_button').show(1000);
+        $('#man_woman_button').show(200);
     }, 2000);
 }
 
