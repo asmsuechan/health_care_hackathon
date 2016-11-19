@@ -5,6 +5,7 @@ class OshieteController < ApplicationController
   end
 
   # POST oshiete/register
+  # { user: { taijuu: "50kg", shincho: "160cm", seibetsu: "male" } }
   def register
     User.create(user_params)
     render json: { status: 301 }
@@ -15,11 +16,11 @@ class OshieteController < ApplicationController
   # {"id":3,"tenmei":"半睡","ryourimei":"うどん","nedan":"600円","url":"http://r.gnavi.co.jp/1gfwba4s0000/","gazou":"http://uds.gnst.jp/rest/fs_img/1gfwba4s0000/s_1001.jpg","created_at":"2016-11-19T02:29:19.229Z","updated_at":"2016-11-19T02:29:19.229Z"}
   def recommend
     if params[:taicho] == "good"
-      tabemono = Tabemono.find(3)
+      tabemono = Tabemono.find_by(ryourimei: "博多もつ鍋")
     elsif params[:taicho] == "bad"
-      tabemono = Tabemono.find(2)
+      tabemono = Tabemono.find_by(ryourimei: "うどん")
     else
-      tabemono = Tabemono.find(1)
+      tabemono = Tabemono.find_by(ryourimei: "そば")
     end
     render json: tabemono
   end
