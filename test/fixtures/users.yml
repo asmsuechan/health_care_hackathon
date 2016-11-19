@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shincho: MyString
+  taiju: MyString
+  taicho: MyString
+  nenrei: MyString
+  seibetsu: MyString
+
+two:
+  shincho: MyString
+  taiju: MyString
+  taicho: MyString
+  nenrei: MyString
+  seibetsu: MyString
