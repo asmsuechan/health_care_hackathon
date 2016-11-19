@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'oshiete/index'
   post 'oshiete/register'
+  post 'oshiete/recommend'
 
   root to: 'welcome#index'
   get 'welcome/index'
