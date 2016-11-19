@@ -1,5 +1,7 @@
 //= require Sound
 
+var yourName = "";
+
 var time = 0;
 var timerID = 0;
 var sasaraImagePathId = 0;
@@ -7,34 +9,31 @@ var sasaraImagePathId = 0;
 var sasaraImagePaths = ['http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/sasara_dai/sasara_normal.png',
     'http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/sasara_dai/sasara_normal_close_mouth.png']
 
-var startTimer = function() {
+var sasaraStartTimer = function() {
     timerID = setInterval(sasaraTimer/*定期的に呼び出す関数名*/, 500/*呼び出す間隔*/);
 };
 
-var stopTimer = function() {
+var sasaraStopTimer = function() {
     clearInterval(timerID);
+    $('#sasara_image').attr('src', sasaraImagePaths[0]);
 };
 
 var sasaraTimer = function() {
     sasaraImagePathId = sasaraImagePathId == 0 ? 1 : 0;
     $('#sasara_image').attr('src', sasaraImagePaths[sasaraImagePathId]);
-
-    time = time + 1;
-    if (time > 180) {
-        stopTimer();
-    }
 };
 
 // ********************************************** //
 
 /* ----- option ----- */
-var message_id = ['message_box']; //指定するidを全て配列で渡す
+var message_id_name = ['message_box']; //指定するidを全て配列で渡す
 var message_txSp = 100; // テキストの表示速度
 var message_dly = 1000; // 次の文章までの待ち時間
 /* ----- option ----- */
 var message_count = 0;
 var message_tx = [];
 var message_txCount = [];
+var message_id = [];
 
 
 function countSet(){ // 文字数カウントの初期設定
@@ -44,8 +43,8 @@ function countSet(){ // 文字数カウントの初期設定
 }
 
 function kamikakushi(){ // 要素をtx[i]に保持させ、非表示にする
-    for(i=0;i<message_id.length;i++){
-        message_id[i] = document.getElementById(message_id[i]);
+    for(i=0;i<message_id_name.length;i++){
+        message_id[i] = document.getElementById(message_id_name[i]);
         message_tx[i] = message_id[i].firstChild.nodeValue; // 初期の文字列
         message_id[i].innerHTML = '';
     }
@@ -61,12 +60,15 @@ function itimozi(){ //　一文字ずつ表示させる
         if(message_count != message_id.length){ // id数が最後なら終了
             setTimeout("itimozi()",message_dly); // 次の段落へ進む
         }
+        sasaraStopTimer();
     }
 }
 function display_message_box() {
     message_count = 0;
     message_tx = [];
     message_txCount = [];
+    message_id = [];
+
     kamikakushi();
     countSet();
     itimozi()
@@ -80,7 +82,7 @@ function view_name_input(){
 }
 
 function scenario_page_start(){
-    startTimer();
+    sasaraStartTimer();
     display_message_box();
     Sound.playSound("http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/voice/00.wav");
     setTimeout(view_name_input, 4000);
@@ -89,19 +91,66 @@ function scenario_page_start(){
 // ********* シナリオ2 *********** //
 
 function scenario2(){
+    yourName = $('#name_input').val();
     $('#name_input').hide(500);
+
     // メッセージ
+    sasaraStartTimer();
     $('#message_box').text("あなたのことを、もっと詳しく教えてごしない。");
+
     display_message_box();
-    $('#man_woman_button').show(500);
+
+    setTimeout(function(){
+        $('#man_woman_button').show(1000);
+    }, 2000);
+}
+
+// ********* シナリオ3 *********** //
+function scenario3(){
+    $('#man_woman_button').hide(500);
+
+    // メッセージ
+    sasaraStartTimer();
+    $('#message_box').text("あなたの年齢を教えてごしない。");
+
+    display_message_box();
+
+    setTimeout(function(){
+        $('#age_input').show(1000);
+    }, 1000);
+}
+
+// ********* シナリオ3 *********** //
+function scenario4(){
+    $('#age_input').hide(500);
+
+    // メッセージ
+    sasaraStartTimer();
+    $('#message_box').text("ありがとう！楽しく健康になろうね！");
+    display_message_box();
+
+    setTimeout(function(){
+        $('#oshiete_area').show(1000);
+    }, 1000);
 }
 
 
 // ********************* 初期表示 *********************** //
 $(function(){
     scenario_page_start();
+
+    // クリックイベント
     $('#name_input_button').click(function(){
         scenario2();
+    });
+    $('#man_button').click(function(){
+        scenario3();
+    });
+    $('#woman_button').click(function(){
+        scenario3();
+    });
+    $('#age_input_button').click(function(){
+        scenario4();
     });
 });
 
