@@ -14,7 +14,8 @@ class OshieteController < ApplicationController
   def recommend
     # 登録者が女の人の場合と男の人の場合で分岐するなどしたほうがいい
     # current_userとかのヘルパーが必要になるのでとりあえず没
-    tabemono = Tabemono.new(tenmei: "巴庵", ryourimei: "博多もつ鍋", nedan: "1200円", url: "http://r.gnavi.co.jp/hv1uvs430000", gazou: "http://uds.gnst.jp/rest/img/hv1uvs430000/t_0004.jpg?t=1403672613&g=157")
+    # tabemono = Tabemono.new(tenmei: "巴庵", ryourimei: "博多もつ鍋", nedan: "1200円", url: "http://r.gnavi.co.jp/hv1uvs430000", gazou: "http://uds.gnst.jp/rest/img/hv1uvs430000/t_0004.jpg?t=1403672613&g=157")
+    tabemono = Tabemono.all.sample
     render json: tabemono
   end
 
