@@ -16,11 +16,11 @@ class OshieteController < ApplicationController
   # {"id":3,"tenmei":"半睡","ryourimei":"うどん","nedan":"600円","url":"http://r.gnavi.co.jp/1gfwba4s0000/","gazou":"http://uds.gnst.jp/rest/fs_img/1gfwba4s0000/s_1001.jpg","created_at":"2016-11-19T02:29:19.229Z","updated_at":"2016-11-19T02:29:19.229Z"}
   def recommend
     if params[:taicho] == "good"
-      tabemono = Tabemono.find_by(ryourimei: "博多もつ鍋")
+      tabemono = Tabemono.good.sample
     elsif params[:taicho] == "bad"
-      tabemono = Tabemono.find_by(ryourimei: "うどん")
+      tabemono = Tabemono.normal.sample
     else
-      tabemono = Tabemono.find_by(ryourimei: "そば")
+      tabemono = Tabemono.normal.sample
     end
     render json: tabemono
   end
