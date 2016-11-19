@@ -136,3 +136,22 @@ $(function(){
         sendRecommend('normal', 'いつもどおりの');
     });
 });
+
+function sendHoukoku(houkoku){
+    $.ajax({
+        type: 'POST',
+        url: HEROKU_URL + '/oshiete/houkoku',
+        data: { houkoku: houkoku }
+    }).done(function( data ) {
+        console.info(JSON.stringify(data));
+    });
+}
+
+$(function(){
+    $('#yes_houkoku_button').click(function(){
+        sendHoukoku('ok');
+    });
+    $('#no_houkoku_button').click(function(){
+        sendHoukoku('ng');
+    });
+});
