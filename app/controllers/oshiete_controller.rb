@@ -10,7 +10,7 @@ class OshieteController < ApplicationController
 
   def recommend
     tabemono = Tabemono.new(tenmei: "アイウエオ", ryourimei: "アイウエオ", nedan: "1000円", url: "hoge.com", gazou: "hoge.com/image.png")
-    render json: tabemono.to_h
+    render json: tabemono
   end
 
   private
