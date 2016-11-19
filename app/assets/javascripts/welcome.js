@@ -85,7 +85,7 @@ function scenario_page_start(){
     sasaraStartTimer();
     display_message_box();
     Sound.playSound("http://healthcare-20161119.s3-website-ap-northeast-1.amazonaws.com/voice/00_さとうささら_私の名前はささら。あ….wav");
-    setTimeout(view_name_input, 4000);
+    setTimeout(view_name_input, 2000);
 }
 
 // ********* シナリオ2 *********** //
@@ -118,7 +118,7 @@ function scenario3(){
     display_message_box();
 
     setTimeout(function(){
-        $('#age_input').show(1000);
+        $('#age_input').show(500);
     }, 1000);
 }
 
@@ -133,7 +133,7 @@ function scenario4(){
     display_message_box();
 
     setTimeout(function(){
-        $('#oshiete_area').show(1000);
+        $('#oshiete_area').show(500);
     }, 1000);
 }
 
@@ -148,7 +148,7 @@ function scenario5(){
     display_message_box();
 
     setTimeout(function(){
-        $('#condition_button_area').show(1000);
+        $('#condition_button_area').show(500);
     }, 1000);
 }
 
@@ -159,7 +159,7 @@ function scenario6(message){
     display_message_box();
 
     setTimeout(function(){
-        $('#tabeta_button_area').show(1000);
+        $('#tabeta_button_area').show(500);
     }, 1000);
 }
 
