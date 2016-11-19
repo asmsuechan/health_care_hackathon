@@ -166,6 +166,11 @@ function scenario7(message, url){
 
     $("#message_box").html(message);
     display_message_box();
+
+    // 画像を戻す
+    setTimeout(function(){
+        $('#sasara_image').attr('src', sasaraImagePaths[0]);
+    }, 4000);
 }
 
 
@@ -230,7 +235,7 @@ function sendHoukoku(houkoku){
         data: { houkoku: houkoku }
     }).done(function( data ) {
         console.info(JSON.stringify(data));
-        scenario7(message, image_url);
+        scenario7(data.sasara, data.image);
     });
 }
 
