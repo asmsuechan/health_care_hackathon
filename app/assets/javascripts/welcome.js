@@ -120,18 +120,52 @@ function scenario3(){
     }, 1000);
 }
 
-// ********* シナリオ3 *********** //
+// ********* シナリオ4 *********** //
 function scenario4(){
     $('#age_input').hide(500);
 
     // メッセージ
     sasaraStartTimer();
-    $('#message_box').text("ありがとう！楽しく健康になろうね！");
+    $('#message_box').text("だんだん！楽しく健康にならこい！");
     display_message_box();
 
     setTimeout(function(){
         $('#oshiete_area').show(1000);
     }, 1000);
+}
+
+// ********* シナリオ5 教えて *********** //
+function scenario5(){
+    $('#oshiete_button').hide(500);
+
+    // メッセージ
+    sasaraStartTimer();
+    $('#message_box').text("今の体調はどんな感じだね？");
+    display_message_box();
+
+    setTimeout(function(){
+        $('#condition_button_area').show(1000);
+    }, 1000);
+}
+
+// ********* シナリオ6 おすすめされた *********** //
+function scenario6(message){
+    $('#condition_button_area').hide(500);
+    $("#message_box").html(message);
+    display_message_box();
+
+    setTimeout(function(){
+        $('#tabeta_button_area').show(1000);
+    }, 1000);
+}
+
+// ********* シナリオ7 おすすめされた *********** //
+function scenario7(message, url){
+    $('#tabeta_button_area').hide(500);
+    $('#sasara_image').attr('src', url);
+
+    $("#message_box").html(message);
+    display_message_box();
 }
 
 
@@ -152,12 +186,15 @@ $(function(){
     $('#age_input_button').click(function(){
         scenario4();
     });
+    $('#oshiete_button').click(function(){
+        scenario5();
+    });
 });
 
 
 // railsとのつなぎ込み
 // var HEROKU_URL = 'http://localhost:3000';
-var HEROKU_URL = 'https://health-care-hackathon-shimane.herokuapp.com';
+var HEROKU_URL = '';
 
 //　一文字ずつ表示はどうしたらいいんだ？
 function sendRecommend(taicho, message_prefix){
@@ -170,7 +207,7 @@ function sendRecommend(taicho, message_prefix){
         var ryourimei = data.ryourimei;
         var url = data.url;
         var message = message_prefix + 'あなたには「' + tenmei + 'の' + ryourimei + '」がおすすめ！<br><a href="' + url + '" class="url_link">' + url+ '</a>';
-        $("#message_box").html(message);
+        scenario6(message);
     });
 }
 
@@ -193,6 +230,7 @@ function sendHoukoku(houkoku){
         data: { houkoku: houkoku }
     }).done(function( data ) {
         console.info(JSON.stringify(data));
+        scenario7(message, image_url);
     });
 }
 
